@@ -20,10 +20,6 @@ public class Banco {
 		this.nome = nome;
 	}
 
-	public List<Conta> getContas() {
-		return contas;
-	}
-
 	public void listarClientes() {
 		System.out.println("Clientes do banco " + this.nome);
 

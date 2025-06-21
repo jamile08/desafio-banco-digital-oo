@@ -14,15 +14,11 @@ public class ContaCorrente extends Conta {
 		super(cliente);
 	}
 
-	public double getLimiteCheque() {
-		return limiteCheque;
-	}
-
 	@Override
 	public void imprimirExtrato() {
 		System.out.println("=== Extrato Conta Corrente ===");
 		super.imprimirInfosComuns();
-		System.out.println(String.format("Limite de cheque: %.2f", this.limiteCheque));
+		System.out.printf("Limite de cheque: %.2f%n", this.limiteCheque);
 		historicoTransacoes();
 	}
 
