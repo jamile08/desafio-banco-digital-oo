@@ -20,8 +20,10 @@ public class ContaCorrente extends Conta {
 
 	@Override
 	public void imprimirExtrato() {
-		System.out.println("=== Extrato models.Conta Corrente ===");
+		System.out.println("=== Extrato Conta Corrente ===");
 		super.imprimirInfosComuns();
+		System.out.println(String.format("Limite de cheque: %.2f", this.limiteCheque));
+		historicoTransacoes();
 	}
 
     @Override
@@ -32,11 +34,12 @@ public class ContaCorrente extends Conta {
 			saldo -= valor;
 			transacoes.add(new Transacao(valor, LocalDateTime.now(), TipoTransacao.SAQUE));
 		} else if (valor <= this.saldo + limiteCheque) {
+			double saque = valor;
 			valor -= saldo;
 			saldo = 0;
 			limiteCheque -= valor;
 			System.out.println("Limite de cheque disponível: " + limiteCheque);
-			transacoes.add(new Transacao(valor, LocalDateTime.now(), TipoTransacao.SAQUE));
+			transacoes.add(new Transacao(saque, LocalDateTime.now(), TipoTransacao.SAQUE));
 		} else {
 			throw new SaldoInsuficienteException("Erro: Saldo insuficiente para realizar o saque de R$ " + valor);
 		}
