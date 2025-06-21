@@ -1,7 +1,10 @@
 package models;
 
+import enuns.TipoTransacao;
 import exceptions.SaldoInsuficienteException;
 import exceptions.ValorInvalidoException;
+
+import java.time.LocalDateTime;
 
 public class ContaCorrente extends Conta {
 
@@ -25,18 +28,19 @@ public class ContaCorrente extends Conta {
 	public void sacar(double valor) throws SaldoInsuficienteException, ValorInvalidoException {
 		if (valor < 0)
 			throw new ValorInvalidoException("O valor negativo de " + valor + " é inválido para realizar operação de saque.");
-		if (valor <= this.saldo)
+		if (valor <= this.saldo) {
 			saldo -= valor;
-		else if (valor <= this.saldo + limiteCheque) {
+			transacoes.add(new Transacao(valor, LocalDateTime.now(), TipoTransacao.SAQUE));
+		} else if (valor <= this.saldo + limiteCheque) {
 			valor -= saldo;
 			saldo = 0;
 			limiteCheque -= valor;
+			System.out.println("Limite de cheque disponível: " + limiteCheque);
+			transacoes.add(new Transacao(valor, LocalDateTime.now(), TipoTransacao.SAQUE));
 		} else {
 			throw new SaldoInsuficienteException("Erro: Saldo insuficiente para realizar o saque de R$ " + valor);
 		}
 
 	}
-
-
 
 }
