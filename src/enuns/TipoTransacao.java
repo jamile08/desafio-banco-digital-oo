@@ -1,5 +1,5 @@
 package enuns;
 
 public enum TipoTransacao {
-    SAQUE, DEPOSITO, TRANSFERENCIA;
+    SAQUE, DEPOSITO, TRANSFERENCIA, RENDIMENTO;
 }

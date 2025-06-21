@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 
 public class ContaPoupanca extends Conta {
 
+	private static final double TAXA_RENDIMENTO = 0.005; // Exemplo: 0,5% ao mês
+
 	public ContaPoupanca(Cliente cliente) {
 		super(cliente);
 	}
@@ -28,5 +30,11 @@ public class ContaPoupanca extends Conta {
 		} else{
 			throw new SaldoInsuficienteException("Erro: Saldo insuficiente para realizar o saque de R$ " + valor);
 		}
+	}
+
+	public void aplicarRendimento() {
+		double rendimento  = saldo * TAXA_RENDIMENTO;
+		this.saldo += rendimento;
+		transacoes.add(new Transacao(rendimento, LocalDateTime.now(), TipoTransacao.RENDIMENTO));
 	}
 }

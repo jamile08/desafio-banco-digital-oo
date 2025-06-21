@@ -12,10 +12,11 @@ public class Main {
 		venilton.setNome("Venilton");
 
 		ContaCorrente cc = new ContaCorrente(venilton);
-		Conta poupanca = new ContaPoupanca(venilton);
+		ContaPoupanca poupanca = new ContaPoupanca(venilton);
 		try {
 			cc.depositar(100);
 			cc.transferir(100, poupanca);
+			poupanca.aplicarRendimento();
 			cc.sacar(350); // Vai lançar a exceção
 		} catch (SaldoInsuficienteException | ValorInvalidoException e) {
 			System.out.println(e.getMessage());
