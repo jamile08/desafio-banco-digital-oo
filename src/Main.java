@@ -21,6 +21,7 @@ public class Main {
 			System.out.println("5. Transferir");
 			System.out.println("6. Ver Extrato");
 			System.out.println("7. Aplicar Rendimento (Poupança)");
+			System.out.println("8. Listar clientes do banco");
 			System.out.println("0. Sair");
 			System.out.print("Escolha uma opção: ");
 
@@ -134,6 +135,9 @@ public class Main {
 					}
 					break;
 
+				case 8:
+					banco.listarClientes();
+					break;
 				case 0:
 					System.out.println("Encerrando o programa...");
 					break;
